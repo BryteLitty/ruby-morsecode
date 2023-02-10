@@ -39,19 +39,32 @@ MORSE_CODE = {
   ' ' => ' '
 }.freeze
 
-def decode_char(string)
-  words = string.split(' ')
-  decoded_words = []
+# def decode_char(string)
+#   words = string.split(' ')
+#   decoded_words = []
 
-  words.each do |word|
-    decoded_word = ''
-    letters = word.split(' ')
-    letters.each do |letter|
-      decoded_word + MORSE_CODE.key(letter)
-    end
-    decoded_words << decoded_word
-  end
-  decoded_words.join(' ')
-end
+#   words.each do |word|
+#     decoded_word = ''
+#     letters = word.split(' ')
+#     letters.each do |letter|
+#       decoded_word + MORSE_CODE.key(letter)
+#     end
+#     decoded_words << decoded_word
+#   end
+#   decoded_words.join(' ')
+# end
+
+
+def decode_char(code):
+    for key, value in MORSE_CODE.items():
+        if code == value:
+            return key
+    return None
+
+def decode_word(word):
+    return ''.join([decode_char(char) for char in word.split()])
+
+def decode(message):
+    return ' '.join([decode_word(word) for word in message.split("   ")])
 
 puts decode_char('.-. ..- -... -.--   --- -.   .-. .- .. .-.. ...')
